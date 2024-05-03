@@ -18,18 +18,6 @@ Local variables in CUDA kernels are declared within the kernel function and resi
 - Limited memory space: Excessive use of local variables may consume more register space per thread, limiting the number of concurrent threads per multiprocessor.
 - No data sharing: Local variables cannot be shared between threads within the same block without resorting to more complex synchronization mechanisms.
 
-+------------+ +------------+ +------------+
-| Host | --> | Device | --> | Host |
-| Memory | | (Global) | | Memory |
-+------------+ +------------+ +------------+
-| | |
-v v v
-Copy Kernel Copy
-Data Operation Data
-|
-v
-Local Variable                                    |
-              
 ## Global Variables
 
 Global variables in CUDA kernels are declared outside the kernel function and reside in global memory on the GPU. They are accessible by all threads and are typically used for input, output, and shared data between threads within the same block.
@@ -41,15 +29,6 @@ Global variables in CUDA kernels are declared outside the kernel function and re
 ### Disadvantages:
 - Slower access: Global memory accesses may introduce latency due to memory access times and contention, especially with non-coalesced memory accesses.
 - Limited concurrency: Accessing the same global variable from multiple threads may lead to serialization and reduced concurrency.
-
-   +------------+       +------------+       +------------+
-   |    Host    |  -->  |   Device   |  -->  |   Host     |
-   |   Memory   |       |  (Global)  |       |   Memory   |
-   +------------+       +------------+       +------------+
-          |                   |                   |
-          v                   v                   v
-        Copy                Kernel              Copy
-        Data               Operation             Data
 
 
 ## Conclusion
