@@ -139,9 +139,7 @@ int main(const int argc, const char** argv) {
   printf("%d Bodies: average %0.3f Billion Interactions / second\n", nBodies, billionsOfOpsPerSecond);
   /*/
 
-  /*
-   * Feel free to modify code below.
-   */
+ 
 
   cudaFree(buf);
 }
